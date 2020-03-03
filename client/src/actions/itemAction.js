@@ -1,4 +1,4 @@
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEM_LOADING } from './types'; 
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEM_LOADING, EDIT_ITEM } from './types'; 
 import axios from 'axios';
 
 export const getItems = () => dispatch => {
@@ -27,6 +27,16 @@ export const addItem = (newItem) => dispatch => {
     .then( res =>
         dispatch({
             type: ADD_ITEM,
+            payload: res.data
+        })
+    )
+}
+
+export const editItem = (newItem) => dispatch => {
+    axios.put('/api/items', newItem)
+    .then( res =>
+        dispatch({
+            type: EDIT_ITEM,
             payload: res.data
         })
     )

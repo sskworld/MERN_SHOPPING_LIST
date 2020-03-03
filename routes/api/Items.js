@@ -10,10 +10,22 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+    
     const newItem = new Item({
         name: req.body.name
     });
 
+    newItem.save()
+    .then(item=>res.json(item)); 
+})
+
+router.put('/:id', (req, res) => {
+    Item.findById(req.params.id).then(
+        item => item.remove())
+    const newItem = new Item({
+        name: req.body.name
+    });
+     
     newItem.save()
     .then(item=>res.json(item)); 
 })
