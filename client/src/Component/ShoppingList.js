@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Containner, ListGroup, ListGroupItem, Button, Container } from 'reactstrap';
+import { ListGroup, ListGroupItem, Button, Container } from 'reactstrap';
 import { CSSTransition,  TransitionGroup } from 'react-transition-group';
-import uuid from 'uuid';
 
 import { getItems, deleteItem } from '../actions/itemAction';
 
@@ -15,7 +14,7 @@ class ShoppingList extends Component {
 
     handleDelete = (id) => {
         this.props.deleteItem(id);
-        this.props.getItems();
+        setTimeout( () => this.props.getItems(),1000)
     }
     
     render() {
@@ -27,10 +26,10 @@ class ShoppingList extends Component {
                         {items.map(({_id, name}) => (
                             <CSSTransition key={_id} timeout={500}>
                                 <ListGroupItem>
-                                    <Button className="mr-2" color="danger" size="sm" onClick={() => {this.handleDelete(_id)}}>
+                                    {name}
+                                    <Button className="mr-2 float-right" color="danger" size="sm" onClick={() => {this.handleDelete(_id)}}>
                                         &times;
                                     </Button>
-                                    {name}
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}

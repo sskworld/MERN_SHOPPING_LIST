@@ -1,4 +1,3 @@
-import uuid from 'uuid';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEM_LOADING, EDIT_ITEM } from '../actions/types'; 
 
 const initialState = {
